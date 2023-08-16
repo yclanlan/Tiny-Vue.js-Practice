@@ -15,15 +15,14 @@ section{
     flex-direction:column; 
     align-items: flex;
     justify-content: space-between;
-
     height:50vh;
-    width:100vw;
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 5%;
     background-color: rgb(82, 82, 248);
     color: white;
 }
+
 h1{
     font-size: 2rem;
 }
@@ -96,14 +95,26 @@ button{
    
 
     html {
-        background-color: blue;
         display: flex;
         margin: 0;
     }
 
     .app{
-        width:100%;
+        
         line-height: 1.5rem;
+    }
+
+    section{
+        display: flex; 
+        flex-direction:column; 
+        align-items: flex;
+        justify-content: space-between;
+        height:50vh;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 5%;
+        background-color: rgb(82, 82, 248);
+        color: white;
     }
 
     h1{
@@ -160,7 +171,7 @@ button{
         height: 3rem !important;
         width: 90% !important;
 
-        font-size: 2rem;
+        font-size: 1.8rem;
         
         margin-top: 10px;
         margin-bottom: 10px;
