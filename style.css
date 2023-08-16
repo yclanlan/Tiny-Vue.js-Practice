@@ -1,19 +1,37 @@
-html, body {
-    height: 100%;
-}
+
+body {
+
+    vertical-align: middle;
+
+  }
 
 html {
     display: table;
     margin: auto;
 }
 
-body {
-    /* display: table-cell; */
-    line-height:  1rem;
-    vertical-align: middle;
+section{
+    display: flex; 
+    flex-direction:column; 
+    align-items: flex;
+    justify-content: space-between;
+    height:50vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    background-color: rgb(82, 82, 248);
+    color: white;
+}
+h1{
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.5rem;
 }
 
 h3{
+    font-size: 1.5rem;
     border:1px;
     line-height: 2rem;
     padding: 0.4rem ;
@@ -22,7 +40,7 @@ h3{
 
 
 p{
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
 
@@ -52,8 +70,119 @@ p{
 }
 
 input{
+    
     width: max-content;
+    height:1rem;
     margin-top: 10px;
     margin-bottom: 10px;
     display: block;
 }
+
+button{
+    font-size: 1rem;
+}
+
+
+
+
+
+
+
+
+@media only screen and (orientation: portrait)  {
+
+   
+
+    html {
+        display: flex;
+        margin: 0;
+    }
+
+    .app{
+        line-height: 1.5rem;
+    }
+
+    h1{
+        font-size: 5rem;
+    }
+
+    h2{
+        font-size: 4rem; 
+        line-height: 4.5rem;
+    }
+    
+    h3{
+        font-size: 3.5rem;
+        border:1px;
+        line-height: 4rem;
+        padding: 0.5rem ;
+        border-style: dashed ;
+    }
+    
+    
+    p{
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+    
+    
+    .box{
+        background-color: blueviolet;
+        height: 600px;
+        width: 600px;
+    }
+    
+    .box.two{
+        background-color: red;
+        
+    }
+    
+    .box.three{
+        background-color: blue;
+        
+    }
+    
+    .box.four{
+        background-color: pink;
+      
+    }
+    
+    [v-cloak]{
+        display: none;
+    }
+    
+    input{
+        
+        height: 3rem !important;
+        width: 90% !important;
+
+        font-size: 2rem;
+        
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: block;
+
+    }
+    
+    button{
+
+        font-size: 2rem;
+    }
+    
+    labe{
+        font-size: 2rem;
+    }
+
+    form{
+        padding-bottom: 0.5rem;
+        font-size: 2rem;
+        line-height: 2rem;
+    }
+
+    }
+
+
+
+
+
+
