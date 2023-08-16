@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue 3 Basic practice</title>
+        <link rel="stylesheet" href="style.css">
+        
+    </head>
+
+    <body>
+        <!-- cloak:斗篷 
+            let everything show up after they were prepared
+            or it will show all the elements for a flash at the first moment -->
+        <div id="app" v-cloak>
+
+            <!------------------------------------------------>
+            <br><hr/><br>
+
+
+            <!--------------- PRACTICE 01 ---------------->
+    
+            
+            <h1>Practice01.</h1>
+            <!-- directly show this greeting variable -->
+            <h2> {{ greeting }} </h2>
+
+            <!-- @ = v-on, which is event listerner
+            listen to keyup (the specific enter key) 
+            and called the greet() method when the event happened-->
+
+            <!-- v-model : two-way data binding 
+            between a value in template and a value in our data properties. -->
+
+            <br>
+            <input  style="width: 100%; height:1.5rem" @keyup.enter="greet()" v-model="greeting"/>
+            
+            <p>⬆click and type here⬆ </p>
+            
+
+
+
+
+            <!-------------------------------------------->
+            <br><hr/><br>
+            <!--------------- PRACTICE 02 ---------------->
+            <h1> Practice.02 </h1>
+            <h2> turn on/off of showing the box </h2>
+            <br>
+            <h3> 2-1. button control by v-if,else </h3>
+            <!-- if set the if variable to false, 
+                the div will not in the html -->
+            <div v-if="vifIsVisible" class="box one" ></div>
+            <div v-else-if="elseifIsVisible" class="box two" ></div>
+            <div v-else class="box three" ></div>
+
+            <!-- if set the show variable to false, 
+                only make display:none, div still there-->
+            <p>Box's order:<b> 01 violet, 02 red,  03 blue</b> <br>
+                so the top on will cover the bottom one <br></p>
+            <br>
+
+            <div class=" button">
+                <!-- v-on: can be replace by @ (short hand) -->
+                <!-- which means the event lisntener ( Listening to Events ) -->
+                <button v-on:click=" vifIsVisible = !vifIsVisible"> Violet On/Off </button>
+                <!-- no break space--> &nbsp
+                <button @click="toggleBox">  Red On/Off </button>
+
+            </div>
+
+            <br>
+            <hr style="border-top: 2px dotted;">
+            <br>
+            <h3> 2-2. button control by v-show </h3>
+            <div v-show="isVisble" class="box four"></div>
+            <div class=" button">
+                <br>
+                <button @click=" isVisble = !isVisble"> Pink On/Off </button>
+            </div>
+
+            <p>this box control by v-show<br>
+            the 2-1 one is v-if(else), if v-if = "false"<br>
+            the div will not exist in the html.<br>
+
+            v-show will keep the div in html, <br>
+            but just not show the element inside</p>
+            <br>
+
+             <!------------------------------------------------>
+             <br><hr/><br>
+             <!--------------- PRACTICE 03 ---------------->
+             <h1> Practice.03 </h1>
+
+            <login-form/>
+            
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+        <script>
+            
+            // define app variable and method
+            let app = Vue.createApp({
+
+                data:function(){
+                    return{
+                        greeting:'Change Title by the input box',
+                        vifIsVisible: false,
+                        elseifIsVisible: false,
+                        isVisble:true,
+                    }
+                },
+
+                methods:{
+                    toggleBox(){
+                        // this. in Vue: looking for the variable in th Vue js instance
+                        // explain_this html+css to remenber what this. do in javascript
+                        this.elseifIsVisible = !this.elseifIsVisible
+                    },
+                    greet(){
+                        console.log(this.greeting)
+                    }
+                }
+            })
+
+
+            app.component('login-form',{
+                //v-bind will pass the parent's property to child
+                //v-bind can be short as ":"
+                //v-model="email" do this for the child >> :modelValue=" email "
+                template:`
+
+                <h2> {{title}} </h2>
+                
+                <br><br>
+                <div style="border : 0.5px solid ; padding:5%">
+
+                <h3> 3-1. Basic way to create form <br>
+                     by input and button 
+                </h3>
+                    
+                    <!--the prevent = add one line of : e.preventDefault in the handleSubmit function()-->
+
+                    <form @submit.prevent="handleSubmit">  
+                        
+                        <custom-input v-model="email"     v-bind:label="emailLabel" />
+                        <custom-input v-model="password"  :label="passwordLabel"  type="password"/> 
+
+                        <br>
+                        <button> Log in </button>  
+
+                    </form>
+
+                <br>
+                </div>
+                <br><br>
+
+                <div style="border : 0.5px solid ; padding:5%">
+                <h3> 3-2. Using loop (v-for) <br>
+                     to create same type of objects 
+                </h3> 
+
+                <!------------------------------------------------>
+                <hr align="left"  style="border-top: 0.5px dotted; max-width: 80%"> <br>
+                <!------------------------------------------------>
+                3-2 / 01. loop to print strings in array
+                    <form>  
+
+                        <!-- v-for as for loop -->
+                        <!-- v-bind the str to their key -->
+                        <h5 v-for=" str in stringInputs " :key="str"> {{str}} </h5>
+
+                    </form>
+
+                <!------------------------------------------------>
+                <hr align="left"  style="border-top: 0.5px dotted; max-width: 80%"> <br>
+                <!------------------------------------------------>
+
+                3-2 / 02. loop to create objects
+                <br>
+
+                    <form @submit.prevent="forLoopHandleSubmit"> 
+                        <br>
+                        <custom-input 
+                        v-for="(input,i) in inputs"
+                        :key="i"
+
+                        v-model="input.value"    
+                        v-bind:label="input.label" 
+                        :type="input.type"
+
+                        />
+                    
+                        <br>
+                        <button> Log in </button>  
+                    </form>
+                </div> <br><br><br>
+
+                `
+                ,
+
+                component:['custom-input'],
+                //data here are only can be use in this self contained component
+                data(){
+                    return{
+                        title:'login form',
+
+                        stringInputs:[
+                            'Name',
+                            'Email',
+                            'Password',
+                         
+                        ],
+
+                        inputs: [
+                            
+                            {   
+                                label:'Email',
+                                value:'',
+                                type:'email',
+                            },
+                            {   
+                                label:'Password',
+                                value:'',
+                                type:'Password',
+                            },                             
+                        ],
+
+                        email:'',
+                        password:'',
+                        emailLabel:'Email',
+                        passwordLabel:'Password'
+                    }
+                },
+                methods:{
+
+                    handleSubmit(){
+                        console.log(
+                            'Email: ' + this.email,
+                            '  '+
+                            'PASSWORD: '+ this.password
+                           )
+                    },
+
+                    forLoopHandleSubmit(){
+                        console.log(
+                            'EMAIL: '+ this.inputs[0].value,
+                            '  '+
+                            'PASSWORD: '+ this.inputs[1].value)
+                    },
+
+                }
+            })
+            //$emit => emit event 
+            app.component('custom-input',{
+                template:`
+                <label>
+                    {{label}}
+                    <input :type="type" v-model="inputValue">
+                </label>
+                `,
+
+                props:['label','type','modelValue'],
+
+                computed:{
+                    inputValue:{
+                        get(){
+                        return this.modelValue
+                        },
+
+                        set(value){
+                            // console.log(value);
+                            //emit event with value
+                            this.$emit('update:modelValue' , value)
+                        }
+                    }
+
+                },
+
+                // data(){
+                //     return{
+                //         inputValue:''
+                //     }
+                // }
+            })
+            
+            
+            // attaches your Element to the DOM.
+            app.mount('#app');
+        </script>
+
+
+ 
+
+    </body>
+
+
+</html>

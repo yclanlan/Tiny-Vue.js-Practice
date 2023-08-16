@@ -1,0 +1,59 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    /* display: table-cell; */
+    line-height:  1rem;
+    vertical-align: middle;
+}
+
+h3{
+    border:1px;
+    line-height: 2rem;
+    padding: 0.4rem ;
+    border-style: dashed ;
+}
+
+
+p{
+    font-size: 0.8rem;
+}
+
+
+.box{
+    background-color: blueviolet;
+    height: 200px;
+    width: 200px;
+}
+
+.box.two{
+    background-color: red;
+    
+}
+
+.box.three{
+    background-color: blue;
+    
+}
+
+.box.four{
+    background-color: pink;
+  
+}
+
+[v-cloak]{
+    display: none;
+}
+
+input{
+    width: max-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+}
